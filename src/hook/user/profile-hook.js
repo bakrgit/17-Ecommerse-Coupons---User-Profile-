@@ -38,12 +38,21 @@ const ProfileHook = () => {
 
     const handelSubmit = async () => {
 
+        let body
+        if (user.email === email) {
+            body = {
+                name,
+                phone
+            }
+        } else {
+            body = {
+                name,
+                email,
+                phone
+            }
+        }
         setLoading(true)
-        await dispatch(updateUserProfileData({
-            name,
-            email,
-            phone
-        }))
+        await dispatch(updateUserProfileData(body))
         setLoading(false)
         setShow(false);
         //   window.location.reload(false);
